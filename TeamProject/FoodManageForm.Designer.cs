@@ -29,27 +29,17 @@ namespace TeamProject
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem(new string[] {
-            "라면",
-            "100"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem(new string[] {
-            "김밥",
-            "10"}, -1);
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem(new string[] {
-            "볶음밥",
-            "50"}, -1);
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.알림설정ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.이메일주소ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.알림수량ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -71,34 +61,6 @@ namespace TeamProject
             this.button1.Text = "확인";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // listView1
-            // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
-            this.listView1.HideSelection = false;
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem7,
-            listViewItem8,
-            listViewItem9});
-            this.listView1.Location = new System.Drawing.Point(51, 34);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(364, 366);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "상품이름";
-            this.columnHeader1.Width = 200;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "재고수량";
-            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader2.Width = 93;
             // 
             // button2
             // 
@@ -133,14 +95,14 @@ namespace TeamProject
             // 이메일주소ToolStripMenuItem
             // 
             this.이메일주소ToolStripMenuItem.Name = "이메일주소ToolStripMenuItem";
-            this.이메일주소ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.이메일주소ToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
             this.이메일주소ToolStripMenuItem.Text = "이메일주소";
             this.이메일주소ToolStripMenuItem.Click += new System.EventHandler(this.이메일주소ToolStripMenuItem_Click);
             // 
             // 알림수량ToolStripMenuItem
             // 
             this.알림수량ToolStripMenuItem.Name = "알림수량ToolStripMenuItem";
-            this.알림수량ToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.알림수량ToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
             this.알림수량ToolStripMenuItem.Text = "알림수량";
             this.알림수량ToolStripMenuItem.Click += new System.EventHandler(this.알림수량ToolStripMenuItem_Click);
             // 
@@ -153,14 +115,24 @@ namespace TeamProject
             this.label2.TabIndex = 5;
             this.label2.Text = "label2";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(49, 79);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 27;
+            this.dataGridView1.Size = new System.Drawing.Size(456, 302);
+            this.dataGridView1.TabIndex = 6;
+            // 
             // FoodManageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.listView1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
@@ -169,6 +141,7 @@ namespace TeamProject
             this.Text = "FoodManageForm";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -178,14 +151,12 @@ namespace TeamProject
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem 알림설정ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 이메일주소ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 알림수량ToolStripMenuItem;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

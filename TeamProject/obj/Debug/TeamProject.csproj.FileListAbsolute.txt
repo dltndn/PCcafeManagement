@@ -12,3 +12,5 @@ C:\이수현\TeamProject\TeamProject\obj\Debug\TeamProject.FoodManageForm.resour
 C:\이수현\TeamProject\TeamProject\obj\Debug\TeamProject.QuantityChangeForm.resources
 C:\이수현\TeamProject\TeamProject\obj\Debug\TeamProject.SetInformationForm.resources
 C:\이수현\TeamProject\TeamProject\obj\Debug\TeamProject.SetQuantityAlarmForm.resources
+C:\이수현\TeamProject\TeamProject\bin\Debug\Oracle.DataAccess.dll
+C:\이수현\TeamProject\TeamProject\obj\Debug\TeamProject.csproj.CopyComplete
