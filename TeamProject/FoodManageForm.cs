@@ -24,22 +24,30 @@ namespace TeamProject
         {
             try
             {
-                string connectionString = "User Id=hong1; Password = 1111; Data Source = (DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = xe))); ";
+                string connectionString = "User Id=hong1; Password = 1111; Data Source = (DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = xe))); ";                
+                OracleConnection myConnection = new OracleConnection(connectionString);
                 string commandString = "select * from food";
-                DBAdapter = new OracleDataAdapter(commandString, connectionString);
-                myCommandBuilder = new OracleCommandBuilder(DBAdapter);
-                DS = new DataSet();
-            }
-            catch (DataException DE)
-            {
-                MessageBox.Show(DE.Message);
-            }
-
-            try
-            {
-                DS.Clear();//***
-                DBAdapter.Fill(DS, "food");
-                dataGridView1.DataSource = DS.Tables["food"].DefaultView;
+                OracleCommand myCommand = new OracleCommand();
+                myCommand.Connection = myConnection;
+                myCommand.CommandText = commandString;
+                OracleDataAdapter DBAdapter = new OracleDataAdapter();
+                DBAdapter.SelectCommand = myCommand;
+                DataSet DS = new DataSet();
+                DBAdapter.Fill(DS); 
+                DataTable foodTable = DS.Tables["foodTable"];
+                DataRowCollection rows = foodTable.Rows;   
+                foreach (DataRow dr in rows)
+                {
+                    ListViewItem item = new ListViewItem(dr[0].ToString());
+                    MessageBox.Show(dr[0].ToString());
+                    for (int i = 1; i < foodTable.Columns.Count; i++)
+                    {
+                        item.SubItems.Add(dr[i].ToString());
+                        
+                    }
+                    listView1.Items.Add(item);
+                }
+                myConnection.Close();
             }
             catch (DataException DE)
             {
@@ -49,8 +57,9 @@ namespace TeamProject
             {
                 MessageBox.Show(DE.Message);
             }
-        
-    }
+         
+            
+        }
         public FoodManageForm()
         {
             InitializeComponent();

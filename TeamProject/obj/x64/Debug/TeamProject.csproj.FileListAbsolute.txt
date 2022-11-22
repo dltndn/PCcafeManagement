@@ -13,3 +13,4 @@ C:\이수현\TeamProject\TeamProject\obj\x64\Debug\TeamProject.csproj.CoreCompil
 C:\이수현\TeamProject\TeamProject\obj\x64\Debug\TeamProject.csproj.CopyComplete
 C:\이수현\TeamProject\TeamProject\obj\x64\Debug\TeamProject.exe
 C:\이수현\TeamProject\TeamProject\obj\x64\Debug\TeamProject.pdb
+C:\이수현\TeamProject\TeamProject\obj\x64\Debug\TeamProject.csproj.AssemblyReference.cache
