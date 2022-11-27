@@ -13,57 +13,46 @@ namespace TeamProject
 {
     public partial class FoodManageForm : Form
     {
-        private int SelectedRowIndex;
-        OracleDataAdapter DBAdapter;
-        DataSet DS;
-        OracleCommandBuilder myCommandBuilder;
-        DataTable foodTable;
-        private int SelectedKeyValue;
-
-        private void DB_Open()
+        private int intID; //ID 필드 설정
+        private OracleConnection odpConn = new OracleConnection();
+        public int getintID
+        { get { return intID; } }
+        private void showDataGridView() //사용자 정의 함수
         {
             try
             {
-                string connectionString = "User Id=hong1; Password = 1111; Data Source = (DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = xe))); ";                
-                OracleConnection myConnection = new OracleConnection(connectionString);
-                string commandString = "select * from food";
-                OracleCommand myCommand = new OracleCommand();
-                myCommand.Connection = myConnection;
-                myCommand.CommandText = commandString;
-                OracleDataAdapter DBAdapter = new OracleDataAdapter();
-                DBAdapter.SelectCommand = myCommand;
-                DataSet DS = new DataSet();
-                DBAdapter.Fill(DS); 
-                DataTable foodTable = DS.Tables["foodTable"];
-                DataRowCollection rows = foodTable.Rows;   
-                foreach (DataRow dr in rows)
-                {
-                    ListViewItem item = new ListViewItem(dr[0].ToString());
-                    MessageBox.Show(dr[0].ToString());
-                    for (int i = 1; i < foodTable.Columns.Count; i++)
-                    {
-                        item.SubItems.Add(dr[i].ToString());
-                        
-                    }
-                    listView1.Items.Add(item);
-                }
-                myConnection.Close();
+                odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
+                odpConn.Open();
+                OracleDataAdapter oda = new OracleDataAdapter();
+                oda.SelectCommand = new
+                OracleCommand("SELECT * from food", odpConn);
+                DataTable dt = new DataTable();
+                oda.Fill(dt);
+                odpConn.Close();
+                dataGridView1.DataSource = dt;
+                dataGridView1.AutoResizeColumns();
+                dataGridView1.AutoSizeColumnsMode =
+                DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dataGridView1.AllowUserToAddRows = false;
+                dataGridView1.RowHeadersVisible = false;
             }
-            catch (DataException DE)
+            catch (Exception ex)
             {
-                MessageBox.Show(DE.Message);
+                MessageBox.Show("에러 발생 : " + ex.ToString());
+                odpConn.Close();
             }
-            catch (Exception DE)
-            {
-                MessageBox.Show(DE.Message);
-            }
-         
-            
         }
+
+        
         public FoodManageForm()
         {
             InitializeComponent();
-            DB_Open();
+            
+        }
+        private void FoodManageForm_Load(object sender, EventArgs e)
+        {
+            showDataGridView();
         }
 
         private void button1_Click(object sender, EventArgs e) //확인
@@ -73,17 +62,19 @@ namespace TeamProject
 
        private void button2_Click(object sender, EventArgs e)  //재고변경
         {
-            /*QuantityChangeForm cFrm = new QuantityChangeForm();
-            foreach (ListViewItem item in listView1.SelectedItems)
-            {
-                ListViewItem.ListViewSubItemCollection subItem = item.SubItems;
-                cFrm.AmmText = subItem[1].Text;
-                if (cFrm.ShowDialog() == DialogResult.OK)
-                {
-                    subItem[1].Text = cFrm.AmmText;
-                }
-            }
-            cFrm.Dispose();*/
+            intID = Convert.ToInt32(dataGridView1.SelectedCells[0].Value);
+            QuantityChangeForm qcForm = new QuantityChangeForm(this);
+            qcForm.ShowDialog();
+            qcForm.Dispose();
+            showDataGridView();
+        }
+
+        private void button3_Click(object sender, EventArgs e) //음식추가
+        {
+            addFoodDataForm afForm = new addFoodDataForm(this);
+            afForm.ShowDialog();
+            afForm.Dispose();
+            showDataGridView();
         }
 
         private void 이메일주소ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -97,5 +88,7 @@ namespace TeamProject
             SetQuantityAlarmForm qFrm = new SetQuantityAlarmForm();
             qFrm.ShowDialog();
         }
+
+        
     }
 }
