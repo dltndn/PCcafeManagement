@@ -79,14 +79,18 @@ namespace TeamProject
 
         private void 이메일주소ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SetInformationForm iFrm = new SetInformationForm();
+            SetInformationForm iFrm = new SetInformationForm(this);
             iFrm.ShowDialog();
+            iFrm.Dispose();
+            showDataGridView();
         }
 
         private void 알림수량ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SetQuantityAlarmForm qFrm = new SetQuantityAlarmForm();
+            SetQuantityAlarmForm qFrm = new SetQuantityAlarmForm(this);
             qFrm.ShowDialog();
+            qFrm.Dispose();
+            showDataGridView();
         }
 
         

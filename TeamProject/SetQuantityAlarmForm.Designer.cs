@@ -71,6 +71,7 @@ namespace TeamProject
             this.Controls.Add(this.button1);
             this.Name = "SetQuantityAlarmForm";
             this.Text = "SetQuantityAlarmForm";
+            this.Load += new System.EventHandler(this.SetQuantityAlarmForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
