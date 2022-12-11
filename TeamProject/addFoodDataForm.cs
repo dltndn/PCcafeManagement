@@ -26,7 +26,7 @@ namespace TeamProject
         {
             odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
             odpConn.Open();
-            string strqry = "INSERT INTO food VALUES (:id, :fname, :amm)";
+            string strqry = "INSERT INTO menu VALUES (:id, :fname, :amm)";
             OracleCommand OraCmd = new OracleCommand(strqry, odpConn);
 
             OraCmd.Parameters.Add("id", OracleDbType.Int32, 20).Value = idTxt.Text.Trim();

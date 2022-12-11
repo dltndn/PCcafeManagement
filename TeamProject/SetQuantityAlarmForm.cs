@@ -22,14 +22,21 @@ namespace TeamProject
         }
         private void SetQuantityAlarmForm_Load(object sender, EventArgs e)
         {
-           
+            odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
+            odpConn.Open();
+            OracleDataAdapter oda = new OracleDataAdapter();
+            oda.SelectCommand = new OracleCommand("SELECT * from owner WHERE owner_id='oqwfhhpiow'", odpConn);
+            DataSet dt = new DataSet();
+            oda.Fill(dt);
+            odpConn.Close();
+            
         }
 
         private int UPDATERow()
         {
             odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
             odpConn.Open();
-            string strqry = "UPDATE owner SET limit_value=:limit_value WHERE owner_id='admin'";
+            string strqry = "UPDATE owner SET limit_value=:limit_value WHERE owner_id='oqwfhhpiow'";
             OracleCommand OraCmd = new OracleCommand(strqry, odpConn);
             OraCmd.Parameters.Add("limit_value", OracleDbType.Int32).Value = numericUpDown1.Text.Trim();
             return OraCmd.ExecuteNonQuery();

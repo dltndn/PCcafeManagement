@@ -44,7 +44,7 @@ namespace TeamProject
         {
             odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
             odpConn.Open();
-            string strqry = "UPDATE food SET amm =:amm WHERE id =:id";
+            string strqry = "UPDATE menu SET left =:amm WHERE menu_id =:id";
             OracleCommand OraCmd = new OracleCommand(strqry, odpConn);
             OraCmd.Parameters.Add("amm", OracleDbType.Int32, 20).Value = textBox1.Text.Trim();
             OraCmd.Parameters.Add("id", OracleDbType.Int32).Value = _parent.getintID;

@@ -25,7 +25,7 @@ namespace TeamProject
                 odpConn.Open();
                 OracleDataAdapter oda = new OracleDataAdapter();
                 oda.SelectCommand = new
-                OracleCommand("SELECT * from food", odpConn);
+                OracleCommand("SELECT * from menu", odpConn);
                 DataTable dt = new DataTable();
                 oda.Fill(dt);
                 odpConn.Close();
