@@ -78,6 +78,9 @@ namespace TeamProject
             this.label58 = new System.Windows.Forms.Label();
             this.label59 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
+            this.label61 = new System.Windows.Forms.Label();
+            this.label62 = new System.Windows.Forms.Label();
+            this.manageBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // foodManageBtn
@@ -85,7 +88,7 @@ namespace TeamProject
             this.foodManageBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.foodManageBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.foodManageBtn.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.foodManageBtn.Location = new System.Drawing.Point(403, 453);
+            this.foodManageBtn.Location = new System.Drawing.Point(272, 463);
             this.foodManageBtn.Name = "foodManageBtn";
             this.foodManageBtn.Size = new System.Drawing.Size(244, 54);
             this.foodManageBtn.TabIndex = 0;
@@ -615,12 +618,48 @@ namespace TeamProject
             this.label60.Size = new System.Drawing.Size(100, 86);
             this.label60.TabIndex = 83;
             // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Font = new System.Drawing.Font("굴림", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label61.Location = new System.Drawing.Point(12, 19);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(133, 28);
+            this.label61.TabIndex = 84;
+            this.label61.Text = "관리자ID:";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("굴림", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label62.Location = new System.Drawing.Point(160, 19);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(36, 28);
+            this.label62.TabIndex = 85;
+            this.label62.Text = "id";
+            // 
+            // manageBtn
+            // 
+            this.manageBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.manageBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.manageBtn.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.manageBtn.Location = new System.Drawing.Point(558, 463);
+            this.manageBtn.Name = "manageBtn";
+            this.manageBtn.Size = new System.Drawing.Size(244, 54);
+            this.manageBtn.TabIndex = 86;
+            this.manageBtn.Text = "매출확인";
+            this.manageBtn.UseVisualStyleBackColor = false;
+            this.manageBtn.Click += new System.EventHandler(this.manageBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1039, 542);
+            this.Controls.Add(this.manageBtn);
+            this.Controls.Add(this.label62);
+            this.Controls.Add(this.label61);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label33);
             this.Controls.Add(this.label7);
@@ -743,6 +782,9 @@ namespace TeamProject
         private System.Windows.Forms.Label label58;
         private System.Windows.Forms.Label label59;
         private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.Label label61;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.Button manageBtn;
     }
 }
 

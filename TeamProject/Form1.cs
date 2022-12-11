@@ -26,14 +26,19 @@ namespace TeamProject
             frm.ShowDialog();
             frm.Dispose();
         }
+        private void manageBtn_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            Get_owner_id("oqwfhhpiow"); //임시 id 사용
             string[] user_arr;
             int[] seat_arr;
             user_arr = Get_user_from_seat(); //select user_id from seat where is_on=1; 배열
             seat_arr = Get_seat_num_from_seat(); //select seat_id from seat where is_on=1; 배열
-            for (int i = 0; i<user_arr.Length; i+=1)
+            for (int i = 0; i < user_arr.Length; i += 1)
             {
                 string text;
                 int seat_num;
@@ -46,6 +51,22 @@ namespace TeamProject
                     label.Text = text;
                 }
             }
+
+        }
+        private void Get_owner_id(string id)
+        {
+            odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
+            odpConn.Open();
+            string strqry = "SELECT owner_id FROM owner WHERE owner_id=:id";
+            OracleCommand OraCmdS = new OracleCommand(strqry, odpConn);
+            OraCmdS.Parameters.Add("id", OracleDbType.Char).Value = id;
+            OracleDataReader rdr = OraCmdS.ExecuteReader();
+            while (rdr.Read())
+            {
+                label62.Text = rdr["owner_id"] as string;
+            }
+            rdr.Close();
+            odpConn.Close();
         }
         private string[] Get_user_from_seat() //자리 이용중인 유저 아이디 배열에 추가
         {
@@ -310,9 +331,7 @@ namespace TeamProject
 
         }
 
-        private void counterLabel_Click(object sender, EventArgs e)
-        {
 
-        }
+       
     }
 }

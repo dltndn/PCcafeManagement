@@ -37,6 +37,8 @@ namespace TeamProject
             this.ammTxt = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.priceText = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -96,7 +98,7 @@ namespace TeamProject
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("새굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button1.Location = new System.Drawing.Point(122, 207);
+            this.button1.Location = new System.Drawing.Point(120, 262);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(93, 36);
@@ -108,7 +110,7 @@ namespace TeamProject
             // button2
             // 
             this.button2.Font = new System.Drawing.Font("새굴림", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button2.Location = new System.Drawing.Point(254, 207);
+            this.button2.Location = new System.Drawing.Point(257, 262);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(93, 36);
@@ -117,11 +119,31 @@ namespace TeamProject
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("굴림", 11F);
+            this.label4.Location = new System.Drawing.Point(70, 212);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(47, 19);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "가격";
+            // 
+            // priceText
+            // 
+            this.priceText.Location = new System.Drawing.Point(158, 195);
+            this.priceText.Multiline = true;
+            this.priceText.Name = "priceText";
+            this.priceText.Size = new System.Drawing.Size(234, 36);
+            this.priceText.TabIndex = 11;
+            // 
             // addFoodDataForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 262);
+            this.ClientSize = new System.Drawing.Size(469, 322);
+            this.Controls.Add(this.priceText);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.ammTxt);
@@ -147,5 +169,7 @@ namespace TeamProject
         private System.Windows.Forms.TextBox ammTxt;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox priceText;
     }
 }
