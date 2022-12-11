@@ -70,6 +70,7 @@ namespace TeamProject
             this.Controls.Add(this.label1);
             this.Name = "SetInformationForm";
             this.Text = "SetInformationForm";
+            this.Load += new System.EventHandler(this.SetInformationForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

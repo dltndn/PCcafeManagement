@@ -24,12 +24,21 @@ namespace TeamProject
         {
             odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
             odpConn.Open();
-            OracleDataAdapter oda = new OracleDataAdapter();
-            oda.SelectCommand = new OracleCommand("SELECT * from owner WHERE owner_id='oqwfhhpiow'", odpConn);
-            DataSet dt = new DataSet();
-            oda.Fill(dt);
+            string strqry = "SELECT * FROM owner WHERE owner_id=:id";
+            OracleCommand OraCmdS = new OracleCommand(strqry, odpConn);
+            OraCmdS.Parameters.Add("id", OracleDbType.Varchar2, 20).Value = "oqwfhhpiow";
+            OracleDataReader rdr = OraCmdS.ExecuteReader();
+            while (rdr.Read())
+            {
+                // 필드 데이타 읽기
+                int n = Convert.ToInt32(rdr["limit_value"]);
+
+                // 데이타를 리스트박스에 추가
+                numericUpDown1.Value = n;
+            }
+            rdr.Close();
             odpConn.Close();
-            
+
         }
 
         private int UPDATERow()

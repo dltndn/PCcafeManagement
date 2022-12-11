@@ -20,6 +20,25 @@ namespace TeamProject
             InitializeComponent();
             _parent = inform1;
         }
+        private void SetInformationForm_Load(object sender, EventArgs e)
+        {
+            odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
+            odpConn.Open();
+            string strqry = "SELECT * FROM owner WHERE owner_id=:id";
+            OracleCommand OraCmdS = new OracleCommand(strqry, odpConn);
+            OraCmdS.Parameters.Add("id", OracleDbType.Varchar2, 20).Value = "oqwfhhpiow";
+            OracleDataReader rdr = OraCmdS.ExecuteReader();
+            while (rdr.Read())
+            {
+                // 필드 데이타 읽기
+                string s = rdr["email"] as string;
+
+                // 데이타를 리스트박스에 추가
+                textBox1.Text = s;
+            }
+            rdr.Close();
+            odpConn.Close();
+        }
         private int UPDATERow()
         {
             odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
@@ -40,6 +59,7 @@ namespace TeamProject
             else MessageBox.Show("데이터 행이 업데이트되지 않음!");
             this.Close();
         }
-    
+
+        
     }
 }
