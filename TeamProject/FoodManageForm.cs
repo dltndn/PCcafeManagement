@@ -24,8 +24,7 @@ namespace TeamProject
                 odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
                 odpConn.Open();
                 OracleDataAdapter oda = new OracleDataAdapter();
-                oda.SelectCommand = new
-                OracleCommand("SELECT * from menu", odpConn);
+                oda.SelectCommand = new OracleCommand("SELECT * from menu", odpConn);
                 DataTable dt = new DataTable();
                 oda.Fill(dt);
                 odpConn.Close();
