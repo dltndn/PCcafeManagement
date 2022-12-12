@@ -28,7 +28,9 @@ namespace TeamProject
         }
         private void manageBtn_Click(object sender, EventArgs e)
         {
-
+            ManageForm frm = new ManageForm();
+            frm.ShowDialog();
+            frm.Dispose();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -129,37 +131,13 @@ namespace TeamProject
             odpConn.Close();
             return text;
         }
-        private string Convert_left_time(int seconds) //시분초 형식으로 변환
-        {
-            string hour_f;
-            string min_f;
-            string sec_f;
-            int hour = seconds / 3600;
-            if (hour < 10)
-            {
-                hour_f = "0" + hour.ToString();
-            } else
-            {
-                hour_f = hour.ToString();
-            }
-            int min = (seconds % 3600) / 60;
-            if (min < 10)
-            {
-                min_f = "0" + min.ToString();
-            } else
-            {
-                min_f = min.ToString();
-            }
-            int sec = (seconds % 3600) % 60;
-            if (sec < 10)
-            {
-                sec_f = "0" + sec.ToString();
-            } else
-            {
-               sec_f = sec.ToString();
-            }
-            string text = hour_f + " : " + min_f + " : " + sec_f;
-            return text;    
+        private string Convert_left_time(int seconds) //시:분:초 형식으로 변환
+        {    
+            int hours = seconds / 3600;
+            int minutes = (seconds % 3600) / 60;
+            seconds = (seconds % 3600) % 60;
+            string result = $"{hours:D2}:{minutes:D2}:{seconds:D2}";
+            return result;
         }
         private Label find_label_num(int s_num)
         {
