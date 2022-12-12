@@ -13,6 +13,7 @@ namespace TeamProject
 {
     public partial class SetInformationForm : Form
     {
+        ConnInformation connClass = new ConnInformation();
         private OracleConnection odpConn = new OracleConnection();
         FoodManageForm _parent;
         public SetInformationForm(FoodManageForm inform1)
@@ -22,7 +23,7 @@ namespace TeamProject
         }
         private void SetInformationForm_Load(object sender, EventArgs e)
         {
-            odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
+            odpConn.ConnectionString = connClass.GetConnStr();
             odpConn.Open();
             string strqry = "SELECT * FROM owner WHERE owner_id=:id";
             OracleCommand OraCmdS = new OracleCommand(strqry, odpConn);
@@ -41,7 +42,7 @@ namespace TeamProject
         }
         private int UPDATERow()
         {
-            odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
+            odpConn.ConnectionString = connClass.GetConnStr();
             odpConn.Open();
             string strqry = "UPDATE owner SET email=:email WHERE owner_id=:id";
             OracleCommand OraCmd = new OracleCommand(strqry, odpConn);

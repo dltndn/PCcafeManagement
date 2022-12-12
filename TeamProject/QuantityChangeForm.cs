@@ -13,6 +13,7 @@ namespace TeamProject
 {
     public partial class QuantityChangeForm : Form       
     {
+        ConnInformation connClass = new ConnInformation();
         private OracleConnection odpConn = new OracleConnection();
         FoodManageForm _parent;
         public QuantityChangeForm(FoodManageForm inform1)
@@ -42,7 +43,7 @@ namespace TeamProject
 
         private int UPDATERow() //사용자 함수 정의
         {
-            odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
+            odpConn.ConnectionString = connClass.GetConnStr();
             odpConn.Open();
             string strqry = "UPDATE menu SET left =:amm WHERE menu_id =:id";
             OracleCommand OraCmd = new OracleCommand(strqry, odpConn);

@@ -13,6 +13,7 @@ namespace TeamProject
 {
     public partial class FoodManageForm : Form
     {
+        ConnInformation connClass = new ConnInformation();
         private int intID; //ID 필드 설정
         private OracleConnection odpConn = new OracleConnection();
         public int getintID
@@ -21,7 +22,7 @@ namespace TeamProject
         {
             try
             {
-                odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
+                odpConn.ConnectionString = connClass.GetConnStr();
                 odpConn.Open();
                 OracleDataAdapter oda = new OracleDataAdapter();
                 oda.SelectCommand = new OracleCommand("SELECT * from menu", odpConn);

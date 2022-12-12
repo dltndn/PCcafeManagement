@@ -14,6 +14,7 @@ namespace TeamProject
 {
     public partial class Form1 : Form
     {
+        ConnInformation connClass = new ConnInformation();
         private OracleConnection odpConn = new OracleConnection();
         public Form1()
         {
@@ -57,7 +58,7 @@ namespace TeamProject
         }
         private void Get_owner_id(string id)
         {
-            odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
+            odpConn.ConnectionString = connClass.GetConnStr();
             odpConn.Open();
             string strqry = "SELECT owner_id FROM owner WHERE owner_id=:id";
             OracleCommand OraCmdS = new OracleCommand(strqry, odpConn);
@@ -104,7 +105,7 @@ namespace TeamProject
         }
         private OracleDataReader Get_data_reader_from_seat() //이용중인 자리 select
         {
-            odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
+            odpConn.ConnectionString = connClass.GetConnStr();
             odpConn.Open();
             string strqry = "SELECT * FROM seat WHERE is_on=:bool";
             OracleCommand OraCmdS = new OracleCommand(strqry, odpConn);
@@ -114,7 +115,7 @@ namespace TeamProject
         }
         private string Get_user_name_left_time(string user_id) //user 정보 select, 이름, 남은시간 리턴
         {
-            odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
+            odpConn.ConnectionString = connClass.GetConnStr();
             odpConn.Open();
             string strqry = "SELECT * FROM user_data WHERE user_id=:user_id";
             OracleCommand OraCmdS = new OracleCommand(strqry, odpConn);

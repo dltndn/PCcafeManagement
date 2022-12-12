@@ -76,6 +76,7 @@
     <Compile Include="addFoodDataForm.Designer.cs">
       <DependentUpon>addFoodDataForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConnInformation.cs" />
     <Compile Include="FoodManageForm.cs">
       <SubType>Form</SubType>
     </Compile>

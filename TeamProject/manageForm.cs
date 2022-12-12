@@ -13,6 +13,7 @@ namespace TeamProject
 {
     public partial class ManageForm : Form
     {
+        ConnInformation connClass = new ConnInformation();
         private OracleConnection odpConn = new OracleConnection();
         public ManageForm()
         {
@@ -74,7 +75,7 @@ namespace TeamProject
         }
         private int[] Get_menu_id_arr_for_day(string day) //menu_id 배열 형태로 가져오기
         {
-            odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
+            odpConn.ConnectionString = connClass.GetConnStr();
             odpConn.Open();
             try
             {
@@ -105,7 +106,7 @@ namespace TeamProject
         }
         private int[] Get_order_quan_arr_for_day (string day) //order_quntity 배열 형태로 가져오기
         {
-            odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
+            odpConn.ConnectionString = connClass.GetConnStr();
             odpConn.Open();
             try
             {
@@ -138,7 +139,7 @@ namespace TeamProject
         private int Get_menu_price(int menu_id) //메뉴 가격 data 꺼내오는 기능
         {
             int result = 0;
-            odpConn.ConnectionString = "User Id=hong1; Password=1111; Data Source=(DESCRIPTION = (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521)) (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME =xe) ) );";
+            odpConn.ConnectionString = connClass.GetConnStr();
             odpConn.Open();
             string strqry = "SELECT * from menu WHERE menu_id=:id";
             OracleCommand OraCmdS = new OracleCommand(strqry, odpConn);
