@@ -23,8 +23,8 @@ namespace TeamProject
         {
             DateTime date_time = dateTimePicker1.Value;
             string date = Convert_date(date_time);
-            day_income.Text = Get_income_of_the_day(date) + "원"; //현재 날짜 기준 일일 매출
-
+            day_income.Text = Get_income_of_the_day(date).ToString() + "원"; //현재 날짜 기준 일일 매출
+            mon_income.Text = Get_income_of_the_month().ToString() + "원"; //현재 날짜 기준 월간 매출
         }
         private string Convert_date(DateTime date_time) //날짜 형식 db방식으로 전환 ex) 22/12/11
         {
@@ -38,10 +38,24 @@ namespace TeamProject
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e) //달력 날짜 변경 시 동작
         {
             string date = Convert_date(dateTimePicker1.Value);
-            day_income.Text = Get_income_of_the_day(date) + "원"; //달력 날짜 기준 일일 매출 
+            day_income.Text = Get_income_of_the_day(date).ToString() + "원"; //달력 날짜 기준 일일 매출 
 
         }
-        private string Get_income_of_the_day(string date) //일일 매출 계산
+        private int Get_income_of_the_month() //월간 매출 계산
+        {
+            DateTime now = DateTime.Now;
+            DateTime firstDay = new DateTime(now.Year, now.Month, 1); //현재 달 기준 첫번째 날
+            DateTime lastDay = firstDay.AddMonths(1).AddDays(-1); //현재 달 기준 마지막 날
+            int sum = 0;
+            for (DateTime date=firstDay; date <= lastDay; date=date.AddDays(1)) //첫번째 날 부터 마지막 날까지 반목문 수행
+            {
+                string date_data = Convert_date(date);
+                int cost = Get_income_of_the_day(date_data);
+                sum += cost;
+            }
+            return sum;
+        }
+        private int Get_income_of_the_day(string date) //일일 매출 계산
         {
             int[] menu_id_arr = Get_menu_id_arr_for_day(date);
             int[] quan_arr = Get_order_quan_arr_for_day(date);
@@ -56,7 +70,7 @@ namespace TeamProject
                     sum += cost;
                 }         
             }
-            return sum.ToString();
+            return sum;
         }
         private int[] Get_menu_id_arr_for_day(string day) //menu_id 배열 형태로 가져오기
         {
@@ -139,7 +153,7 @@ namespace TeamProject
             rdr.Close();
             return result;
         }
-        
+     
         private void foodManageBtn_Click(object sender, EventArgs e)
         {
             Close();
