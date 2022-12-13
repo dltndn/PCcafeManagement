@@ -45,9 +45,9 @@ namespace TeamProject
         {
             odpConn.ConnectionString = connClass.GetConnStr();
             odpConn.Open();
-            string strqry = "UPDATE menu SET left =:amm WHERE menu_id =:id";
+            string strqry = "UPDATE foods SET quntity =:amm WHERE id =:id";
             OracleCommand OraCmd = new OracleCommand(strqry, odpConn);
-            OraCmd.Parameters.Add("amm", OracleDbType.Int32, 20).Value = textBox1.Text.Trim();
+            OraCmd.Parameters.Add("amm", OracleDbType.Varchar2, 20).Value = textBox1.Text.Trim();
             OraCmd.Parameters.Add("id", OracleDbType.Int32).Value = _parent.getintID;
 
             return OraCmd.ExecuteNonQuery(); //업데이트되는 행수 반환 }

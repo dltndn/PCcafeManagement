@@ -26,13 +26,15 @@ namespace TeamProject
         {
             odpConn.ConnectionString = connClass.GetConnStr();
             odpConn.Open();
-            string strqry = "INSERT INTO menu VALUES (:id, :fname, :amm, :price)";
+            string strqry = "INSERT INTO foods VALUES (:id, :fname, :cate, :price, :img, :amm)";
             OracleCommand OraCmd = new OracleCommand(strqry, odpConn);
 
             OraCmd.Parameters.Add("id", OracleDbType.Int32, 20).Value = idTxt.Text.Trim();
             OraCmd.Parameters.Add("fname", OracleDbType.Varchar2, 20).Value = nameTxt.Text.Trim();
-            OraCmd.Parameters.Add("amm", OracleDbType.Int32, 20).Value = ammTxt.Text.Trim();
-            OraCmd.Parameters.Add("price", OracleDbType.Int32, 20).Value = priceText.Text.Trim();
+            OraCmd.Parameters.Add("cate", OracleDbType.Varchar2, 10).Value = categoryTxt.Text.Trim();
+            OraCmd.Parameters.Add("price", OracleDbType.Varchar2, 20).Value = priceText.Text.Trim();
+            OraCmd.Parameters.Add("img", OracleDbType.Varchar2, 100).Value = imgTxt.Text.Trim();
+            OraCmd.Parameters.Add("amm", OracleDbType.Varchar2, 20).Value = ammTxt.Text.Trim();           
             return OraCmd.ExecuteNonQuery(); //추가되는 행수 반환
         }
 
@@ -49,6 +51,16 @@ namespace TeamProject
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void categoryTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

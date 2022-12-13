@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Threading;
 
 namespace TeamProject
 {
@@ -36,7 +37,7 @@ namespace TeamProject
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Get_owner_id("oqwfhhpiow"); //임시 id 사용
+            Get_owner_id(connClass.GetOwnerId()); //임시 id 사용
             string[] user_arr;
             int[] seat_arr;
             user_arr = Get_user_from_seat(); //select user_id from seat where is_on=1; 배열
