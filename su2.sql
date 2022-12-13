@@ -97,14 +97,16 @@ ordernumber number,
 menu_id number,
 orderdate varchar(20),
 order_quantity number,
+message varchar(500),
+seat_id number,
 CONSTRAINT orderlist_pk PRIMARY KEY(orderlist_id, ordernumber)
 );
 /
-insert into orderlist values(1, 1, 1, '2022-12-13', 1);
+insert into orderlist values(1, 1, 1, '2022-12-13', 1, 'sadf', 1);
 /
-insert into orderlist values(1, 2, 3, '2022-12-12', 1);
+insert into orderlist values(1, 2, 3, '2022-12-12', 1, 'wer', 4);
 /
-insert into orderlist values(2, 3, 4, '2022-12-11', 1);
+insert into orderlist values(2, 3, 4, '2022-12-11', 1, 'sgs', 5);
 /
 drop table request;
 /

@@ -135,7 +135,7 @@ namespace TeamProject
             }
         }
         
-        private int Get_menu_price(int menu_id) //메뉴 가격 data 꺼내오는 기능
+        private int Get_menu_price(int menu_id) //메뉴 가격 data 반환
         {
             int result = 0;
             odpConn.ConnectionString = connClass.GetConnStr();
