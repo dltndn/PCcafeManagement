@@ -18,6 +18,7 @@ namespace TeamProject
         ConnInformation connClass = new ConnInformation();
         private OracleConnection odpConn = new OracleConnection();
         private OracleConnection odpConn2 = new OracleConnection();
+        private OracleConnection odpConn3 = new OracleConnection();
         private int orderIndex = 0;
         public Form1()
         {
@@ -36,10 +37,17 @@ namespace TeamProject
             frm.ShowDialog();
             frm.Dispose();
         }
-
+        private void timer1_Tick(object sender, EventArgs e) //5초 주기로 좌석데이터 렌더링
+        {
+            Print_seat_data();
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             orderIndex = Get_today_order_rows();
+            Print_seat_data();
+        }
+        private void Print_seat_data() //좌석 데이터를 출력하는 메소드
+        {
             Get_owner_id(connClass.GetOwnerId()); //임시 id 사용
             string[] user_arr;
             int[] seat_arr;
@@ -58,7 +66,6 @@ namespace TeamProject
                     label.Text = text;
                 }
             }
-
         }
         private void Get_owner_id(string id)
         {
@@ -148,10 +155,10 @@ namespace TeamProject
         {
             DateTime current = DateTime.Now;
             string day = Convert_date(current);
-            odpConn.ConnectionString = connClass.GetConnStr();
-            odpConn.Open();
+            odpConn3.ConnectionString = connClass.GetConnStr();
+            odpConn3.Open();
             string strqry = "SELECT * from orderlist WHERE orderdate=:setd";
-            OracleCommand OraCmdS = new OracleCommand(strqry, odpConn);
+            OracleCommand OraCmdS = new OracleCommand(strqry, odpConn3);
             OraCmdS.Parameters.Add("setd", OracleDbType.Char).Value = day;
             OracleDataReader rdr = OraCmdS.ExecuteReader();
             int rows = 0;
@@ -159,7 +166,7 @@ namespace TeamProject
             {
                 rows++;
             }
-            odpConn.Close();
+            odpConn3.Close();
             rdr.Close() ;
             return rows;
         }
@@ -167,10 +174,10 @@ namespace TeamProject
         {
             DateTime current = DateTime.Now;
             string day = Convert_date(current);
-            odpConn.ConnectionString = connClass.GetConnStr();
-            odpConn.Open();
+            odpConn3.ConnectionString = connClass.GetConnStr();
+            odpConn3.Open();
             string strqry = "SELECT * from orderlist WHERE orderdate=:setd";
-            OracleCommand OraCmdS = new OracleCommand(strqry, odpConn);
+            OracleCommand OraCmdS = new OracleCommand(strqry, odpConn3);
             OraCmdS.Parameters.Add("setd", OracleDbType.Char).Value = day;
             OracleDataReader rdr = OraCmdS.ExecuteReader();
             int index = 0;
@@ -196,7 +203,7 @@ namespace TeamProject
                 }
                 index++;
             }
-            odpConn.Close();
+            odpConn3.Close();
             rdr.Close();
         }
         private string Convert_date(DateTime date_time) //날짜 형식 db방식으로 전환 ex) 2022-12-11
@@ -206,7 +213,7 @@ namespace TeamProject
             text = year + '-' + date_time.Month.ToString() + '-' + date_time.Day.ToString();
             return text;
         }
-        private void button1_Click_1(object sender, EventArgs e) //주문체크 버튼 클릭 시 작동
+        private void orderCheckBtn_Click_1(object sender, EventArgs e) //주문체크 버튼 클릭 시 작동
         {
             int curRows = Get_today_order_rows(); //버튼 클릭 시점 주문량
             if (curRows > orderIndex) //추가로 주문이 들어온 경우
@@ -218,7 +225,6 @@ namespace TeamProject
             {
                 MessageBox.Show("주문이 없습니다.");
             }
-            
         }
         private string Get_menu_name(int menu_id) //메뉴 이름 data 반환
         {
@@ -226,7 +232,7 @@ namespace TeamProject
             odpConn2.ConnectionString = connClass.GetConnStr();
             odpConn2.Open();
             string strqry = "SELECT * from foods WHERE id=:id";
-            OracleCommand OraCmdS = new OracleCommand(strqry, odpConn);
+            OracleCommand OraCmdS = new OracleCommand(strqry, odpConn2);
             OraCmdS.Parameters.Add("id", OracleDbType.Int32).Value = menu_id;
             OracleDataReader rdr2 = OraCmdS.ExecuteReader();
             while (rdr2.Read())
@@ -408,6 +414,5 @@ namespace TeamProject
 
         }
 
-       
     }
 }

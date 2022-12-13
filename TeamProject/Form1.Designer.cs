@@ -29,6 +29,7 @@ namespace TeamProject
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.foodManageBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -81,7 +82,8 @@ namespace TeamProject
             this.label61 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
             this.manageBtn = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.orderCheckBtn = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // foodManageBtn
@@ -652,15 +654,21 @@ namespace TeamProject
             this.manageBtn.UseVisualStyleBackColor = false;
             this.manageBtn.Click += new System.EventHandler(this.manageBtn_Click);
             // 
-            // button1
+            // orderCheckBtn
             // 
-            this.button1.Location = new System.Drawing.Point(927, 54);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 42);
-            this.button1.TabIndex = 87;
-            this.button1.Text = "주문체크";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.orderCheckBtn.Location = new System.Drawing.Point(927, 54);
+            this.orderCheckBtn.Name = "orderCheckBtn";
+            this.orderCheckBtn.Size = new System.Drawing.Size(100, 42);
+            this.orderCheckBtn.TabIndex = 87;
+            this.orderCheckBtn.Text = "주문체크";
+            this.orderCheckBtn.UseVisualStyleBackColor = true;
+            this.orderCheckBtn.Click += new System.EventHandler(this.orderCheckBtn_Click_1);
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 5000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -668,7 +676,7 @@ namespace TeamProject
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1039, 542);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.orderCheckBtn);
             this.Controls.Add(this.manageBtn);
             this.Controls.Add(this.label62);
             this.Controls.Add(this.label61);
@@ -797,7 +805,8 @@ namespace TeamProject
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.Label label62;
         private System.Windows.Forms.Button manageBtn;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button orderCheckBtn;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
